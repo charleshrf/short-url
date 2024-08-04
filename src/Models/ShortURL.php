@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
+ * @property string $title
  * @property string $destination_url
  * @property string $default_short_url
  * @property string $url_key
@@ -49,6 +50,7 @@ class ShortURL extends Model
      * @var array<int,string>
      */
     protected $fillable = [
+        'title',
         'destination_url',
         'default_short_url',
         'url_key',
@@ -136,6 +138,17 @@ class ShortURL extends Model
     public static function findByDestinationURL(string $destinationURL): Collection
     {
         return self::where('destination_url', $destinationURL)->get();
+    }
+
+    /**
+     * A helper method that can be used for finding all the ShortURL models
+     * with the given title.
+     *
+     * @return Collection<int, ShortURL>
+     */
+    public static function findByTitle(string $title): Collection
+    {
+        return self::where('title', $title)->get();
     }
 
     /**

@@ -21,6 +21,7 @@ class ShortURLFactory extends Factory
         $urlKey = (new KeyGenerator(new Hashids()))->generateRandom();
 
         return [
+            'title' => $this->faker->sentence(),
             'destination_url' => $this->faker->url(),
             'default_short_url' => url($urlKey),
             'url_key' => $urlKey,

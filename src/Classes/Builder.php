@@ -125,6 +125,11 @@ class Builder
     protected ?int $generateKeyUsing = null;
 
     /**
+     * Short URL Title.
+     */
+    protected ?string $title = null;
+
+    /**
      * Define a callback to access the ShortURL model prior to creation.
      */
     protected ?Closure $beforeCreateCallback = null;
@@ -318,6 +323,16 @@ class Builder
     public function keyGenerator(UrlKeyGenerator $keyGenerator): self
     {
         $this->keyGenerator = $keyGenerator;
+
+        return $this;
+    }
+
+    /**
+     * Explicitly set short URL Title.
+     */
+    public function title(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
